@@ -1,0 +1,110 @@
+\chapter{Quasimorphismen und der Zusammenhang zu beschränkter Kohomologie}
+\begin{thSetup}
+    Sei $G$ in diesem Kapitel stets eine Gruppe.
+\end{thSetup}
+
+\begin{thDef}[Quasimorphismus, Defekt] \hfill
+    \begin{itemize}
+        \item
+            Ein \emph{Quasimorphismus (auf $G$)} ist eine
+            Abbildung $f\colon G\to\R$ mit
+            \[ \sup_{g,h\in G} \abs{f(g) + f(h) - f(gh)} \;<\; \infty  . \]
+
+        \item
+            Der \emph{Defekt~$D(F)$} eines Quasimorphismus $f\colon G\to\R$
+            ist
+            \[ D(f) \defeq \inf\bigl\{ c\in\R[\geq0] \Mid
+              \sup_{g,h\in G} \abs{f(g) + f(h) - f(gh)} \leq c \bigr\}
+            . \]
+    \end{itemize}
+\end{thDef}
+
+\begin{thBeispiele}
+\item
+    Ein Quasimorphismus $G\to\R$ hat genau dann Defekt~$0$, wenn er ein
+    Gruppenhomomorphismus $G\to(\R,+)$ ist.
+
+\item
+    Jede beschränkte Abbildung $f\colon G\to\R$ ist ein
+    Quasimorphismus mit $D(f) \leq 3\norm{f}_\supr$.
+
+\item
+    Allgemeiner ist für jeden Gruppenhomomorphismus $f\colon G\to(\R,+)$ und
+    jede beschränkte Abbildung $b\colon G\to\R$ die (punktweise) Summe $f+b$
+    ein Quasimorphismus.
+\end{thBeispiele}
+
+Das letzte Beispiel gibt Anlass zu folgender Definition:
+
+\begin{thDef}[Trivialer Quasimorphismus]
+    Sei $f\colon G\to\R$ ein Quasimorphismus. Dann ist $f$ ein \emph{trivialer
+    Quasimorphismus}, falls es einen Gruppenhomomorphismus $f'\colon G\to(\R,+)$
+    mit $\norm{f-f'}_\supr < \infty$ gibt.
+\end{thDef}
+
+Offensichtlich bildet die Menge aller Quasimorphismen (bzw. aller trivialen
+Quasimorphismen) einen $\R$-Vektorraum.
+
+\begin{thDef}[Vektorraum aller (trivialen) Quasimorphismen]
+    Wir definieren $\QM(G)$ (bzw. $\QM_0(G)$) als den $\R$-Vektorraum aller
+    Quasimorphismen (bzw. trivialen Quasimorphismen). 
+\end{thDef}
+
+\begin{thProposition}[Zerlegung von $\QM_0$]
+    Es gilt:
+    \[ \QM_0(G) = \Hom_\Z(G,\R) \oplus \Cb^1(G)  . \]
+\end{thProposition}
+
+\begin{thBeispiel}[Wörterzählende Quasimorphismen]
+    Nicht-triviale Beispiele liefern sogenannte \enquote{counting
+    quasimorphisms}, welche wir im Folgenden auf Deutsch als
+    \emph{wörterzählende Quasimorphismen} bezeichnen. Sei $F$ die freie Gruppe
+    über einer Menge~$S$. Elemente aus $F$ seien stets reduzierte Wörter in den
+    Erzeugern aus~$S$. Ist nun $w\in F$, so kann man zeigen, dass die Abbildung
+    \begin{align*}
+        \psi_w\colon F &\to \R  \\
+        g &\mapsto (\text{Anzahl der Vorkommen von $w$ in $g$})
+                 - (\text{Anzahl der Vorkommen von $w^{-1}$ in $g$})
+    \end{align*}
+    einen Quasimorphismus auf~$F$ liefert. Einen Beweis dieser Behauptung findet
+    man beispielsweise bei
+    Löh\cite[Ch.\,2,\;2.5.3,\;Lemma\,2.5.11]{lecnotes:loeh:bdcoho}.
+    Für eine ausführlichere Behandlung (auch anderer Varianten) wörterzählender
+    Quasimorphismen siehe Caligari\cite[Ch.\,2,\;2.3.2]{bookc:calegari09}.
+\end{thBeispiel}
+
+\begin{thErinnerDef}[Vergleichsabbildung]
+    \begin{itemize}
+        \item
+            Die Inklusion von Kokettenkomplexen $\Cb^\ast(G;\R) \hookrightarrow
+            C^\ast(G;\R)$ induziert eine Abbildung $\Hb^\ast(G;\R) \to
+            H^\ast(G;\R)$ in Kohomologie.
+        \item
+            Es ist
+            \[ E\Hb^\ast(G;\R)
+                \defeq \ker\bigl( \Hb^\ast(G;\R) \to H^\ast(G;\R) \bigr)
+            \]
+            der (gradweise) Kern der Vergleichsabbildung.
+    \end{itemize}
+\end{thErinnerDef}
+
+\begin{thSatz}[Zusammenhang zwischen Quasimorphismen und Kohomologie]
+    Es gilt:
+    \[ \Quot{\QM(G)}{\QM_0(G)} \;\cong\; E\Hb^2(G;\R)  . \]
+\end{thSatz}
+
+\begin{thKorollar}
+    Verschwindet die zweite Kohomologie $H^2(G;\R)$ von $G$, so gilt
+    \[ \Quot{\QM(G)}{\QM_0(G)} \;\cong\; \Hb^2(G;\R)  . \]
+\end{thKorollar}
+
+\begin{thBeispiel}[Quasimorphismen auf freien Gruppen]
+    Sei $F$ eine freie Gruppe vom Rang mindestens~$2$. Aus dem vorherigen
+    Vortrag wissen wir, dass $\dim_{\R} \Hb^2(G;\R) = \infty$ gilt. Außerdem
+    kann man zeigen, dass $H^2(G;\R)$ verschwindet (siehe zum Beispiel
+    Löh\cite[Ch.\,1,\;1.3.4,\;Example~1.3.13]{lecnotes:loeh:bdcoho}).
+    Dann folgt aus dem Korollar sofort
+    \[ \dim_{\R} \Quot{\QM(G)}{\QM_0(G)} = \infty  , \]
+    d.\,h. es gibt unendlich viele (linear unabhängige) nicht-triviale
+    Quasimorphismen auf~$F$.
+\end{thBeispiel}

@@ -1,0 +1,230 @@
+\documentclass[11pt,a4paper,ngerman,DIV=11,bibliography=totoc,titlepage=false]{scrreprt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+\usepackage[babel]{csquotes}
+\usepackage[shortlabels]{enumitem}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{ifmtarg}
+\usepackage{xstring}
+\usepackage{remreset}
+
+
+\usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
+            pdftitle={Seminar Beschränkte Kohomologie - %
+                      Vortrag 4: Quasimorphismen},%
+            pdfauthor={Johannes Prem}]{hyperref}
+%
+\usepackage{cleveref}
+\let\cref=\Cref
+
+\usepackage{myhelpers}  % my own myhelpers.sty
+\usepackage{mymathmisc} % my own mymathmisc.sty
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% macro definitions and other things
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% don't reset footnote numbers
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother
+
+
+% make parenthesized versions of \ref and cleveref's \cref
+\newcommand*{\pref}[1]{(\ref{#1})}
+\newcommand*{\pcref}[1]{(\cref{#1})}
+
+% make a even more clever \mycref that produces "Lemma 42a)" etc.
+% (to see it in action check out the code in chap2.tex) 
+\newcommand{\mycref}[1]{%
+    \begingroup%
+    \StrCount{#1}{:}[\mycrefCount]%
+    \StrBefore[\mycrefCount]{#1}{:}[\myrefMain]%
+    \expandafter\cref\expandafter{\myrefMain}\,\ref{#1}%
+    \endgroup%
+}
+
+% make \varepsilon and \varphi default
+\varifygreekletters{\epsilon\phi}
+
+% change the qedsymbol to my favoured blacksquare
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% style for /all/ theorem like environments
+\newtheoremstyle{mythms}
+ {15pt}% space above
+ {12pt}% space below 
+ {}% body font
+ {}% indent amount
+ {\bfseries}% theorem head font
+ {.}% punctuation after theorem head
+ {0.6cm plus 0.25cm minus 0.1cm}% space after theorem head (\newline possible)
+ {}% theorem head spec 
+ 
+% set style and define thm like environments
+\theoremstyle{mythms}
+\newtheorem{globalnum}{DUMMY DUMMY DUMMY}[chapter]
+\newtheorem{thDef}[globalnum]{Definition}
+\newtheorem{thNotation}[globalnum]{Notation}
+\newtheorem{thSatz}[globalnum]{Satz}
+\newtheorem{thProposition}[globalnum]{Proposition}
+\newtheorem{thLemma}[globalnum]{Lemma}
+\newtheorem{thKorollar}[globalnum]{Korollar}
+
+\newtheorem{thSetup}[globalnum]{Setup}
+\newtheorem{thErinnerung}[globalnum]{Erinnerung}
+\newtheorem{thErinnerDef}[globalnum]{Erinnerung/Definition}
+\newtheorem{thBemerkung}[globalnum]{Bemerkung}
+%\newtheorem{thWarnung}[globalnum]{Warnung}
+\newtheorem{thBeispiel}[globalnum]{Beispiel}
+\newtheorem{thBeispiele}[globalnum]{Beispiele}
+\newenvironment{BspList}[1][]{%
+\nopagebreak\begin{thBeispiele}#1%
+\hfill\begin{enumerate}[(a),parsep=0pt,itemsep=0.8ex,leftmargin=2em]%
+}{%
+\end{enumerate}\end{thBeispiele}
+}
+%
+
+% also define a 'proofsketch' version of 'proof'
+\newenvironment{proofsketch}[1][]{%
+\begin{proof}[Beweisskizze#1]
+}{%
+\end{proof}
+}
+
+% inject pdfbookmarks at thm like environments
+\makeatletter
+\let\origthmhead=\thmhead
+\renewcommand{\thmhead}[3]{%
+\origthmhead{#1}{#2}{#3}%
+\belowpdfbookmark{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
+}
+\makeatother
+
+% new math operators
+\DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
+
+% avoid "already defined"
+\let\ker=\relax
+% new math 'operators'
+\newcommand{\sDMO}[1]{\expandafter\DeclareMathOperator\csname#1\endcsname{#1}}
+
+\sDMO{const}
+\sDMO{Hom}
+\sDMO{id}
+\sDMO{im}
+\sDMO{ker}
+\sDMO{QM}
+
+% make quantors that use \limits per default
+\DeclareMathOperator*{\Exists}{\exists}
+\DeclareMathOperator*{\forAll}{\forall}
+
+% define an 'abs', 'norm' and 'Spann' command
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\Spann}{\langle}{\rangle}
+
+% define missing arrows
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
+\newcommand{\isorightarrow}[1][]{\xrightarrow[#1]{\smash{\raisebox{-2pt}{$\sim$}}}}
+
+% provide mathbb symbols \N \Z \Q \R and \C
+\defmathbbsymbols{Z Q C}
+\defmathbbsymbolsubs{N R}
+
+% define some set specific macros
+\newcommand{\setclosure}[1]{\overline{#1}}
+\newcommand{\setinterior}[1]{#1^\circ}
+\newcommand{\setboundary}[1]{\partial #1}
+
+% quotient by means of groups/rings/vector spaces
+\newcommand{\Quot}[3][\big]{%
+\raisebox{2pt}{$\mathsurround=0pt\displaystyle #2$}\mkern-3mu%
+#1/%
+\mkern-3mu\raisebox{-3.5pt}{$\displaystyle #3$}%
+}
+\newcommand{\QuotS}[3][]{%
+\raisebox{2pt}{$\mathsurround=0pt\displaystyle #2$}\mkern-1mu%
+#1/%
+\mkern-3mu\raisebox{-3.5pt}{$\displaystyle #3$}%
+}
+
+% just some shortcuts
+\newcommand{\Cb}{C_{\mathsf{b}}}
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\eqdef}{\eqqcolon}
+\newcommand{\Hb}{H_{\mathsf{b}}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\homo}{^\mathsf{h}}
+\newcommand{\isum}[1][1]{\sum_{i=#1}}
+\newcommand{\mr}{\mathrm}
+%\newcommand{\mt}{^\mathsf{t}}
+%\newcommand{\Nfolge}[1]{\left(#1_n\right)_{n\in\N}}
+\newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
+\newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
+\newcommand{\supr}{\infty}
+\newcommand{\thalf}{\tfrac{1}{2}}
+
+% some text shortcuts
+\qXq{iff}
+\qXq{implies}
+\qTXq{oder}
+\qTXq{und}
+\qqTXqq{und}
+\newcommand{\fuer}[1][\qquad]{#1\text{für }}
+
+%
+\newcommand{\Achtung}{\emph{Achtung:} }
+
+%% use some tikz libraries
+%\usetikzlibrary{arrows,calc,intersections}
+
+% xy tip selection (ComputerModern)
+\SelectTips{cm}{}
+\UseTips
+
+% listing with -- is nicer than with bullets 
+\setlist[itemize,1]{label=--}
+
+% start at chapter 0
+\setcounter{chapter}{-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{titlepage}
+\input{chap0}
+\input{chap1}
+\input{chap2}
+
+\appendix
+\bibliographystyle{plaindin}
+\bibliography{bibsources}
+
+\end{document}
+
+
+
+
+

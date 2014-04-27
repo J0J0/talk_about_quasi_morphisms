@@ -1,0 +1,54 @@
+\chapter{Ungerade und homogene Quasimorphismen}
+\begin{thSetup}
+    Sei $G$ auch in diesem Kapitel eine Gruppe.
+\end{thSetup}
+
+\begin{thDef}[Ungerader/Homogener Quasimorphismus]
+    Sei $f\in\QM(G)$ ein Quasimorphismus.
+    \begin{itemize}
+        \item
+            Wir sagen, $f$ ist \emph{ungerade}, falls
+            \[ \forall\,g\in G\colon\quad
+                f(g^{-1}) = -f(g)
+            \]
+            gilt.
+            
+        \item
+            Wir sagen, $f$ ist \emph{homogen}, falls
+            \[ \forall\,g\in G,\;k\in\Z\colon\quad
+                f(g^k) = k\,f(g)
+            \]
+            gilt.
+    \end{itemize}
+\end{thDef}
+
+\begin{thProposition}[Homogenisierung]
+    Sei $f\in\QM(G)$. Dann ist die Abbildung
+    \[ f\homo \colon G \to \R, \quad
+        x\mapsto \lim_{n\to\infty} \frac{f(x^n)}{n}
+    \]
+    wohldefiniert und ein homogener Quasimorphismus, welchen wir
+    \emph{Homogenisierung von $f$} nennen. Außerdem gilt
+    \[ \norm{f-f\homo}_\supr \leq D(f)  . \]
+\end{thProposition}
+
+Zum Beweis verwenden wir das folgende Lemma:
+
+\begin{thLemma}
+    Sei $f\in\QM(G)$, sei $n\in\N$ und seien
+    $w_1,\dots,w_n\in G$. Dann gilt für $w\defeq w_1\cdots w_n\in G$:
+    \[ \abs[\Big]{ f(w) - \isum^n f(w_i) } \leq (n-1) D(f)  . \]
+\end{thLemma}
+
+\begin{thKorollar}
+    Es gilt
+    \[ \QM(G) = \QM\homo(G) \oplus \Cb^1(G)  , \]
+    wobei $\QM\homo(G) \subset \QM(G)$ den Untervekorraum aller homogenen
+    Quasimorphismen bezeichnet. Insbesondere gilt auch
+    \[ \Quot{\QM\homo(G)}{\Hom_\Z(G,\R)} \;\cong\; E\Hb^2(G;\R)  . \]
+\end{thKorollar}
+
+\begin{thKorollar}[Quasimorphismen auf abelschen Gruppen]
+    Sei $G$ abelsch. Dann gilt gibt es keine nicht-trivialen
+    Quasimorphismen auf~$G$, d.\,h. es gilt $\QM(G) = \QM_0(G)$.
+\end{thKorollar}
