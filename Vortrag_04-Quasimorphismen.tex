@@ -81,6 +81,7 @@
 \newtheorem{globalnum}{DUMMY DUMMY DUMMY}[chapter]
 \newtheorem{thDef}[globalnum]{Definition}
 \newtheorem{thNotation}[globalnum]{Notation}
+\newtheorem{thKonstruktion}[globalnum]{Konstruktion}
 \newtheorem{thSatz}[globalnum]{Satz}
 \newtheorem{thProposition}[globalnum]{Proposition}
 \newtheorem{thLemma}[globalnum]{Lemma}
@@ -119,6 +120,7 @@
 
 % new math operators
 \DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
+\DeclareMathOperator*{\freeprod}{\bigstar}
 
 % avoid "already defined"
 \let\ker=\relax
@@ -168,11 +170,14 @@
 }
 
 % just some shortcuts
-\newcommand{\Cb}{C_{\mathsf{b}}}
+\newcommand{\bd}{\mathsf{b}}
+\newcommand{\Cb}{C_{\bd}}
 \newcommand{\defeq}{\coloneqq}
+\newcommand{\EHb}{{E\!H}_{\bd}}
 \newcommand{\eqdef}{\eqqcolon}
-\newcommand{\Hb}{H_{\mathsf{b}}}
+\newcommand{\Hb}{H_{\bd}}
 \newcommand{\half}{\frac{1}{2}}
+\newcommand{\hatCb}{\widehat{C}_{\bd}}
 \newcommand{\homo}{^\mathsf{h}}
 \newcommand{\isum}[1][1]{\sum_{i=#1}}
 \newcommand{\mr}{\mathrm}
@@ -181,6 +186,7 @@
 \newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
 \newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
 \newcommand{\supr}{\infty}
+%\newcommand{\supr}{{\mr{sup}}}
 \newcommand{\thalf}{\tfrac{1}{2}}
 
 % some text shortcuts
@@ -217,6 +223,7 @@
 \input{chap0}
 \input{chap1}
 \input{chap2}
+\input{chap3}
 
 \appendix
 \bibliographystyle{plaindin}

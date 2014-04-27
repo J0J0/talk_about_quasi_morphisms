@@ -1,1 +1,56 @@
-\chapter{Qausimorphismen auf freien Produkten}
+\chapter{Quasimorphismen auf freien Produkten}
+\begin{thKonstruktion}
+    \label{freep:construction}
+    %
+    Sei $I$ eine Menge mit $\abs{I}\geq 2$ und $(G_i)_{i\in I}$ eine Familie
+    nicht-trivialer Gruppen. Sei weiter
+    \[ G \defeq \freeprod_{i\in I} G_i \]
+    das freie Produkt der Gruppen. Wir behandeln jede der Gruppen~$G_i$
+    unter der üblichen Identifikation als Untergruppe von~$G$.
+    Ist nun $x\in G$, so gibt es ein $n\in\N$ und Indizes $i_1,\dots,i_n\in I$, so
+    dass $x$ eine eindeutige Darstellung
+    \[ x = x_1 \cdots x_n \]
+    besitzt, wobei $x_j \in G_{i_j}$ nicht-trivial für alle $j\in\setOneto n$
+    und $i_j\neq i_{j+1}$ für alle $j\in\setOneto{n-1}$.
+    
+    Wir möchten nun Quasimorphismen auf~$G$ konstruieren. Für $i\in I$ sei dazu
+    $\hatCb^1(G_i)$ derjenige Unterraum von $\Cb^1(G_i)$, der alle ungeraden
+    beschränkten Quasimorphismen enthält. Weiter sei
+    \[ V(G) \defeq \prod_{i\in I} \hatCb^1(G_i) \]
+    und
+    \[ V_0(G) \defeq \bigl\{ (\sigma_i)_{i\in I} \in V(G) \Mid
+        \sup\nolimits_{i\in I}\, \norm{\sigma_i}_\supr < \infty \bigr\}
+    . \]%
+    \rule{0pt}{1.3\ht\strutbox}%
+    Für $\sigma = (\sigma_i)_{i\in I} \in V_0(G)$ definieren wir nun eine
+    Abbildung~$g_\sigma$ wie folgt:
+    \begin{align*}
+        g_\sigma\colon G &\to \R
+        \\
+        x &\mapsto \isum^n \sigma_{i_j}(x_j), \quad
+        \text{ falls $x = x_1\cdots x_n$ im obigen Sinne}
+    . \end{align*}
+\end{thKonstruktion}
+
+\begin{thProposition}[Quasimorphismen auf freien Produkten]
+    Die Abbildung $g_\sigma$ aus \cref{freep:construction} ist für alle
+    $\sigma\in V_0(G)$ ein Quasimorphismus.
+\end{thProposition}
+
+\begin{thProposition}
+    Die Abbildung
+    \[ V_0(G) \to \EHb^2(G;\R), \quad
+        \sigma \mapsto [\partial g_\sigma]_\bd
+    \]
+    ist linear und injektiv.
+\end{thProposition}
+
+\begin{thKorollar}[Beschränkte Kohomologie freier Gruppen]
+    Sei $F$ eine freie Gruppe vom Rang mindestens~$2$. Dann gilt
+    \[ \dim_{\R} \Hb^2(G;\R) = \infty  . \]
+\end{thKorollar}
+
+\begin{thKorollar}[Beschränkte Kohomologie von $\operatorname{PSL}_2(\Z)$]
+    Die beschränkte Kohomologie $\Hb^2( \operatorname{PSL}_2(\Z); \R )$ von
+    $\operatorname{PSL}_2(\Z)$ ist nicht trivial.
+\end{thKorollar}

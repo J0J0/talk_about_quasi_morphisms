@@ -8,37 +8,37 @@
         \item
             Ein \emph{Quasimorphismus (auf $G$)} ist eine
             Abbildung $f\colon G\to\R$ mit
-            \[ \sup_{g,h\in G} \abs{f(g) + f(h) - f(gh)} \;<\; \infty  . \]
+            \[ \sup_{g,h\in G} \abs{f(g) + f(h) - f(gh)} \;<\, \infty  . \]
 
         \item
             Der \emph{Defekt~$D(F)$} eines Quasimorphismus $f\colon G\to\R$
             ist
             \[ D(f) \defeq \inf\bigl\{ c\in\R[\geq0] \Mid
-              \sup_{g,h\in G} \abs{f(g) + f(h) - f(gh)} \leq c \bigr\}
+              \sup\nolimits_{g,h\in G}\, \abs{f(g) + f(h) - f(gh)} \leq c \bigr\}
             . \]
     \end{itemize}
 \end{thDef}
 
-\begin{thBeispiele}
+\begin{BspList}
 \item
     Ein Quasimorphismus $G\to\R$ hat genau dann Defekt~$0$, wenn er ein
-    Gruppenhomomorphismus $G\to(\R,+)$ ist.
+    Gruppenhomomorphismus $G\to\R$ ist.
 
 \item
     Jede beschränkte Abbildung $f\colon G\to\R$ ist ein
     Quasimorphismus mit $D(f) \leq 3\norm{f}_\supr$.
 
 \item
-    Allgemeiner ist für jeden Gruppenhomomorphismus $f\colon G\to(\R,+)$ und
+    Allgemeiner ist für jeden Gruppenhomomorphismus $f\colon G\to\R$ und
     jede beschränkte Abbildung $b\colon G\to\R$ die (punktweise) Summe $f+b$
     ein Quasimorphismus.
-\end{thBeispiele}
+\end{BspList}
 
 Das letzte Beispiel gibt Anlass zu folgender Definition:
 
 \begin{thDef}[Trivialer Quasimorphismus]
     Sei $f\colon G\to\R$ ein Quasimorphismus. Dann ist $f$ ein \emph{trivialer
-    Quasimorphismus}, falls es einen Gruppenhomomorphismus $f'\colon G\to(\R,+)$
+    Quasimorphismus}, falls es einen Gruppenhomomorphismus $f'\colon G\to\R$
     mit $\norm{f-f'}_\supr < \infty$ gibt.
 \end{thDef}
 
@@ -46,8 +46,8 @@ Offensichtlich bildet die Menge aller Quasimorphismen (bzw. aller trivialen
 Quasimorphismen) einen $\R$-Vektorraum.
 
 \begin{thDef}[Vektorraum aller (trivialen) Quasimorphismen]
-    Wir definieren $\QM(G)$ (bzw. $\QM_0(G)$) als den $\R$-Vektorraum aller
-    Quasimorphismen (bzw. trivialen Quasimorphismen). 
+    Wir schreiben $\QM(G)$ (bzw. $\QM_0(G)$) für den $\R$-Vektorraum aller
+    Quasimorphismen (bzw. aller trivialen Quasimorphismen). 
 \end{thDef}
 
 \begin{thProposition}[Zerlegung von $\QM_0$]
@@ -68,12 +68,12 @@ Quasimorphismen) einen $\R$-Vektorraum.
     \end{align*}
     einen Quasimorphismus auf~$F$ liefert. Einen Beweis dieser Behauptung findet
     man beispielsweise bei
-    Löh\cite[Ch.\,2,\;2.5.3,\;Lemma\,2.5.11]{lecnotes:loeh:bdcoho}.
+    Löh\cite[Ch.\,2,\;2.5.3,\;Lemma~2.5.11]{lecnotes:loeh:bdcoho}.
     Für eine ausführlichere Behandlung (auch anderer Varianten) wörterzählender
     Quasimorphismen siehe Caligari\cite[Ch.\,2,\;2.3.2]{bookc:calegari09}.
 \end{thBeispiel}
 
-\begin{thErinnerDef}[Vergleichsabbildung]
+\begin{thErinnerDef}[Vergleichsabbildung] \hfill
     \begin{itemize}
         \item
             Die Inklusion von Kokettenkomplexen $\Cb^\ast(G;\R) \hookrightarrow
@@ -81,7 +81,7 @@ Quasimorphismen) einen $\R$-Vektorraum.
             H^\ast(G;\R)$ in Kohomologie.
         \item
             Es ist
-            \[ E\Hb^\ast(G;\R)
+            \[ \EHb^\ast(G;\R)
                 \defeq \ker\bigl( \Hb^\ast(G;\R) \to H^\ast(G;\R) \bigr)
             \]
             der (gradweise) Kern der Vergleichsabbildung.
@@ -90,7 +90,7 @@ Quasimorphismen) einen $\R$-Vektorraum.
 
 \begin{thSatz}[Zusammenhang zwischen Quasimorphismen und Kohomologie]
     Es gilt:
-    \[ \Quot{\QM(G)}{\QM_0(G)} \;\cong\; E\Hb^2(G;\R)  . \]
+    \[ \Quot{\QM(G)}{\QM_0(G)} \;\cong\; \EHb^2(G;\R)  . \]
 \end{thSatz}
 
 \begin{thKorollar}
