@@ -1,4 +1,4 @@
-\chapter{Quasimorphismen und der Zusammenhang zu beschränkter Kohomologie}
+\chapter{Quasimorphismen und Zusammenhang zu beschränkter Kohomologie}
 \begin{thSetup}
     Sei $G$ in diesem Kapitel stets eine Gruppe.
 \end{thSetup}
@@ -50,10 +50,17 @@ Quasimorphismen) einen $\R$-Vektorraum.
     Quasimorphismen (bzw. aller trivialen Quasimorphismen). 
 \end{thDef}
 
-\begin{thProposition}[Zerlegung von $\QM_0$]
+\begin{thProposition}[Zerlegung von \texorpdfstring{$\QM_0$}{QM0}]
     Es gilt:
     \[ \QM_0(G) = \Hom_\Z(G,\R) \oplus \Cb^1(G)  . \]
 \end{thProposition}
+
+\begin{proofsketch}
+    Die Gleichheit $\QM_0(G) = \Hom_\Z(G,\R) + \Cb^1(G)$ liest man direkt an den
+    Definitionen ab und weiter überlegt man sich leicht, dass es keine beschränkten
+    Gruppenhomomorphismen $G\to\R$ gibt.
+    \\
+\end{proofsketch}
 
 \begin{thBeispiel}[Wörterzählende Quasimorphismen]
     Nicht-triviale Beispiele liefern sogenannte \enquote{counting
@@ -73,12 +80,13 @@ Quasimorphismen) einen $\R$-Vektorraum.
     Quasimorphismen siehe Caligari\cite[Ch.\,2,\;2.3.2]{bookc:calegari09}.
 \end{thBeispiel}
 
-\begin{thErinnerDef}[Vergleichsabbildung] \hfill
+\begin{thErinnerDef}[Vergleichsabbildung, $\EHb^\ast$] \hfill
     \begin{itemize}
         \item
             Die Inklusion von Kokettenkomplexen $\Cb^\ast(G;\R) \hookrightarrow
             C^\ast(G;\R)$ induziert eine Abbildung $\Hb^\ast(G;\R) \to
-            H^\ast(G;\R)$ in Kohomologie.
+            H^\ast(G;\R)$ in Kohomologie, die sogenannte
+            \emph{Vergleichsabbildung}.
         \item
             Es ist
             \[ \EHb^\ast(G;\R)
@@ -93,6 +101,77 @@ Quasimorphismen) einen $\R$-Vektorraum.
     \[ \Quot{\QM(G)}{\QM_0(G)} \;\cong\; \EHb^2(G;\R)  . \]
 \end{thSatz}
 
+\begin{proof}
+    Wir betrachten das folgende Diagramm:
+    \[
+        \newcommand{\gray}[1]{{\color{black!50}#1}}
+        \newcommand{\graylap}[1]{\mathrlap{\gray{#1}}}
+        \xymatrix@C=1cm{
+            C^1(G;\R) \ar[r]^{\delta^1}
+            & C^2(G;\R) \ar[r]^{\pi}
+            & H^2(G;\R) \ar@{}[r]|-{\gray=}
+                & \graylap{\ker\bigl(\delta^2\bigr)/\im\bigl(\delta^1\bigr)}
+            \\
+            \QM(G;\R) \ar@{-->}[r]^{\delta} \ar@{ `->}[u]
+                \ar@{-->}[rrd]^(.6)\phi
+                & \Cb^2(G;\R) \ar[r]^{\pi_\bd} \ar@{ `->}[u]
+            & \Hb^2(G;\R) \ar@{}[r]|-{\gray=} \ar[u]_c
+                & \graylap{\ker\bigl(\delta^2_\bd\bigr)/\im\bigl(\delta^1_\bd\bigr)}
+            \\
+            & & \EHb^2(G;\R) \ar@{}[r]|-{\gray=} \ar@{ `->}[u]
+                & \graylap{\ker(c)}
+            %
+            & \hspace*{1.5cm} % alignment hack :/
+        }
+    \]
+    (wobei $c$ die Vergleichsabbildung ist, $\pi$ und $\pi_\bd$ die
+    kanonischen Projektionen sind und die linke Inklusion im Sinne
+    von \cref{ch3:basics} zu verstehen ist). Sei $f\in\QM(G)$.
+    Dann gilt $\delta^1(f) = f\after\partial_2$ und nach Definition von
+    $\partial_2$ somit
+    \[ (f\after\partial_2)\bigl([g_1|g_2]\bigr) 
+        = f(g_2) - f(g_1g_2) + f(g_1)
+    \]
+    für alle $g_1,g_2\in G$. Nach den Vorüberlegungen in \cref{ch3:basics} gilt
+    damit
+    \[ \norm[\big]{\delta^1(f)}
+        = \sup_{g_1,g_2\in G} \abs{f(g_2) - f(g_1g_2) + f(g_1)}
+        \leq D(f) < \infty
+    . \]
+    Also faktorisiert $\QM(G;\R) \longhookrightarrow C^1(G;\R)
+    \overset{\smash{\delta^1}}\longto C^2(G;\R)$ über $\Cb^2(G;\R)$ und
+    wir bezeichnen die induzierte Abbildung einfach mit~$\delta$.
+    Weil dann auch das äußere Rechteck im obigen Diagramm kommutiert,
+    gilt $c\after\pi_\bd\after\delta = 0$. Nach der universellen Eigenschaft
+    des Kerns erhalten wir somit eine Abbildung~$\phi$ wie im Diagramm,
+    so dass auch das untere Dreieck kommutiert.
+    Sei nun $[g]_\bd\in\EHb^2(G;\R)$, d.\,h. mit $[g] = 0 \in H^2(G;\R)$.
+    Dann gilt:
+    \[ [g] = 0
+        \implies g\in\im\bigl(\delta^1\bigr)
+        \implies \exists\,\tilde g\in C^1(G;\R)\colon
+            \delta^1(\tilde g) = g \in \Cb^2(G;\R)
+    . \]
+    Solch ein $\tilde g$ ist dann offenbar ein Quasimorphismus. Es folgt die
+    Surjektivität von~$\phi$. Sei $f\in\ker(\phi)$, also
+    \[ \phi(f) = 0 \in\ker(c) \subset \Hb^2(G;\R)  \qtextq{bzw.}
+        \delta(f) \in \im\bigl(\delta^1_\bd\bigr)
+    . \]
+    Dann gibt es ein $\tilde f\in\Cb^1(G;\R)$ mit $\delta^1_\bd(\tilde f)
+    = \delta(f)$ bzw. $\delta^1(f - \tilde f) = 0 \in\Cb^2(G;\R)$.
+    Es folgt $f - \tilde f \in\Hom_\Z(G,\R)$ und damit
+    \[ f \in \Hom_\Z(G,\R) + \Cb^1(G;\R) = \QM_0(G)  . \]
+    Dies zeigt $\ker(\phi) \subset \QM_0(G)$. Sei umgekehrt
+    $f = f'+b \in\QM_0(G)$ mit $f'\in\Hom_\Z(G,\R)$ und $b\in\Cb^1(G;\R)$.
+    Dann gilt
+    \[ \bigl[\delta(f'+b)\bigr]_\bd 
+        = \bigl[0 + \delta(b)\bigr]_\bd = 0 \in \Hb^2(G;\R)
+    ; \]
+    also folgt $\QM_0(G) \subset \ker(\phi)$ und damit Gleichheit. Der
+    Homomorphiesatz liefert nun die Behauptung.
+    \\
+\end{proof}
+
 \begin{thKorollar}
     Verschwindet die zweite Kohomologie $H^2(G;\R)$ von $G$, so gilt
     \[ \Quot{\QM(G)}{\QM_0(G)} \;\cong\; \Hb^2(G;\R)  . \]
@@ -100,8 +179,10 @@ Quasimorphismen) einen $\R$-Vektorraum.
 
 \begin{thBeispiel}[Quasimorphismen auf freien Gruppen]
     Sei $F$ eine freie Gruppe vom Rang mindestens~$2$. Aus dem vorherigen
-    Vortrag wissen wir, dass $\dim_{\R} \Hb^2(G;\R) = \infty$ gilt. Außerdem
-    kann man zeigen, dass $H^2(G;\R)$ verschwindet (siehe zum Beispiel
+    Vortrag wissen wir, % TODO: Ist das so?
+    dass $\dim_{\R} \Hb^2(G;\R) = \infty$ gilt (oder siehe
+    \cref{freep:cohofreegrp}). Außerdem kann man zeigen, dass $H^2(G;\R)$
+    verschwindet (siehe zum Beispiel
     Löh\cite[Ch.\,1,\;1.3.4,\;Example~1.3.13]{lecnotes:loeh:bdcoho}).
     Dann folgt aus dem Korollar sofort
     \[ \dim_{\R} \Quot{\QM(G)}{\QM_0(G)} = \infty  , \]

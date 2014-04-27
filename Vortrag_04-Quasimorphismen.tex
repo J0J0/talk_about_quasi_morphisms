@@ -134,6 +134,34 @@
 \sDMO{ker}
 \sDMO{QM}
 
+% categories
+\newcommand{\MakeCategoryName}[1]{%
+    \expandafter\DeclareMathOperator\csname#1\endcsname{\mathsf{#1}}
+}
+
+\MakeCategoryName{Ab}
+\MakeCategoryName{Ch}
+\MakeCategoryName{CoCh}
+\MakeCategoryName{Grad}
+\MakeCategoryName{Group}
+\MakeCategoryName{Mod}
+\MakeCategoryName{Ring}
+\MakeCategoryName{Set}
+\MakeCategoryName{Top}
+\MakeCategoryName{Vect}
+
+%
+\newcommand{\lXX}[2]{\mathop{{}_{#2}\mkern-2.5mu#1}}
+\newcommand{\makeLRcat}[1]{%
+    \expandafter\newcommand\csname l#1\endcsname{\expandafter\lXX\csname#1\endcsname}
+    \expandafter\newcommand\csname r#1\endcsname[1]{\csname#1\endcsname_{##1}}
+}
+%
+\makeLRcat{Mod}
+\makeLRcat{Ch}
+\makeLRcat{CoCh}
+\makeLRcat{Grad}
+
 % make quantors that use \limits per default
 \DeclareMathOperator*{\Exists}{\exists}
 \DeclareMathOperator*{\forAll}{\forall}
@@ -170,6 +198,7 @@
 }
 
 % just some shortcuts
+\newcommand{\after}{\surround{\mskip4mu plus 2mu minus 1mu}{\mathord{\circ}}}
 \newcommand{\bd}{\mathsf{b}}
 \newcommand{\Cb}{C_{\bd}}
 \newcommand{\defeq}{\coloneqq}
@@ -183,10 +212,12 @@
 \newcommand{\mr}{\mathrm}
 %\newcommand{\mt}{^\mathsf{t}}
 %\newcommand{\Nfolge}[1]{\left(#1_n\right)_{n\in\N}}
+\newcommand{\oper}{{}}
 \newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
 \newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
 \newcommand{\supr}{\infty}
 %\newcommand{\supr}{{\mr{sup}}}
+\newcommand{\surround}[2]{#1#2#1}
 \newcommand{\thalf}{\tfrac{1}{2}}
 
 % some text shortcuts
@@ -206,6 +237,12 @@
 % xy tip selection (ComputerModern)
 \SelectTips{cm}{}
 \UseTips
+
+% other xy specific settings
+\newcommand{\xyhookdirspacing}{4pt}
+\newdir{`}{\dir^{(}} 
+\newdir{ `}{{}*!/-\xyhookdirspacing/\dir{`}}
+\iffalse)\fi % fix syntax highlighting
 
 % listing with -- is nicer than with bullets 
 \setlist[itemize,1]{label=--}
