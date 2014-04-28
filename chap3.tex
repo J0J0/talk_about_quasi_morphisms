@@ -11,9 +11,9 @@
     Ist nun $x\in G\setminus\{()\}$, so gibt es ein $n\in\N$ und Indizes
     $i_1,\dots,i_n\in I$, so dass $x$ eine eindeutige Darstellung
     \[ x = x_1 \cdots x_n \]
-    besitzt, wobei folgende Bedingungen gelten: Für alle $j\in\setOneto n$ ist
-    $x_j \in G_{i_j}$ nicht-trivial und für alle $j\in\setOneto{n-1}$ gilt
-    $i_j\neq i_{j+1}$.
+    besitzt, wobei folgende Bedingungen gelten: Für alle $k\in\setOneto n$ ist
+    $x_k \in G_{i_k}$ nicht-trivial und für alle $k\in\setOneto{n-1}$ gilt
+    $i_k\neq i_{k+1}$.
     
     Wir möchten nun Quasimorphismen auf~$G$ konstruieren. Für $i\in I$ sei dazu
     $\hatCb^1(G_i)$ derjenige Unterraum von $\Cb^1(G_i)$, der alle ungeraden
@@ -33,7 +33,7 @@
         \begin{cases}
             0, \quad& \text{falls $x=()$},
             \\
-            \isum^n \sigma_{i_j}(x_j), \quad&
+            \ksum^n \sigma_{i_k}(x_k), \quad&
             \text{falls $x = x_1\cdots x_n$ im obigen Sinne} .
         \end{cases}
     \end{align*}

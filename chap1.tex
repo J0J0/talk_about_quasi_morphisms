@@ -3,19 +3,18 @@
     Sei $G$ in diesem Kapitel stets eine Gruppe.
 \end{thSetup}
 
-\begin{thDef}[Quasimorphismus, Defekt] \hfill
+\begin{thDef}[Defekt, Quasimorphismus] \hfill
     \begin{itemize}
         \item
-            Ein \emph{Quasimorphismus (auf $G$)} ist eine
-            Abbildung $f\colon G\to\R$ mit
-            \[ \sup_{g,h\in G} \abs{f(g) + f(h) - f(gh)} \;<\, \infty  . \]
-
-        \item
-            Der \emph{Defekt~$D(F)$} eines Quasimorphismus $f\colon G\to\R$
+            Der \emph{Defekt~$D(f)$} einer Abbildung $f\colon G\to\R$
             ist
-            \[ D(f) \defeq \inf\bigl\{ c\in\R[\geq0] \Mid
-              \sup\nolimits_{g,h\in G}\, \abs{f(g) + f(h) - f(gh)} \leq c \bigr\}
+            \[ D(f) \defeq \sup_{g,h\in G}\, \abs{f(g) + f(h) - f(gh)}
+                \;\in\, \R[\geq0] \cup \{\infty\}
             . \]
+            
+        \item
+            Ein \emph{Quasimorphismus auf $G$} ist eine
+            Abbildung $f\colon G\to\R$ mit $D(f) < \infty$.
     \end{itemize}
 \end{thDef}
 
@@ -51,6 +50,8 @@ Quasimorphismen) einen $\R$-Vektorraum.
 \end{thDef}
 
 \begin{thProposition}[Zerlegung von \texorpdfstring{$\QM_0$}{QM0}]
+    \label{qmor:decompQM0}%
+    %
     Es gilt:
     \[ \QM_0(G) = \Hom_\Z(G,\R) \oplus \Cb^1(G)  . \]
 \end{thProposition}
@@ -128,7 +129,7 @@ Quasimorphismen) einen $\R$-Vektorraum.
     \]
     (wobei $c$ die Vergleichsabbildung ist, $\pi$ und $\pi_\bd$ die
     kanonischen Projektionen sind und die linke Inklusion im Sinne
-    von \cref{ch3:basics} zu verstehen ist). Sei $f\in\QM(G)$.
+    von \cref{ch3:basics} zu verstehen ist). Sei $f\in\QM(G;\R)$.
     Dann gilt $\delta^1(f) = f\after\partial_2$ und nach Definition von
     $\partial_2$ somit
     \[ (f\after\partial_2)\bigl([g_1|g_2]\bigr) 
@@ -137,8 +138,8 @@ Quasimorphismen) einen $\R$-Vektorraum.
     für alle $g_1,g_2\in G$. Nach den Vorüberlegungen in \cref{ch3:basics} gilt
     damit
     \[ \norm[\big]{\delta^1(f)}
-        = \sup_{g_1,g_2\in G} \abs{f(g_2) - f(g_1g_2) + f(g_1)}
-        \leq D(f) < \infty
+        \, = \sup_{g_1,g_2\in G} \abs{f(g_2) - f(g_1g_2) + f(g_1)}
+        \,=\, D(f) \,<\, \infty
     . \]
     Also faktorisiert $\QM(G;\R) \longhookrightarrow C^1(G;\R)
     \overset{\smash{\delta^1}}\longto C^2(G;\R)$ über $\Cb^2(G;\R)$ und
@@ -182,12 +183,12 @@ Quasimorphismen) einen $\R$-Vektorraum.
 \begin{thBeispiel}[Quasimorphismen auf freien Gruppen]
     Sei $F$ eine freie Gruppe vom Rang mindestens~$2$. Aus dem vorherigen
     Vortrag wissen wir, % TODO: Ist das so?
-    dass $\dim_{\R} \Hb^2(G;\R) = \infty$ gilt (oder siehe
-    \cref{freep:cohofreegrp}). Außerdem kann man zeigen, dass $H^2(G;\R)$
+    dass $\dim_{\R} \Hb^2(F;\R) = \infty$ gilt (oder siehe
+    \cref{freep:cohofreegrp}). Außerdem kann man zeigen, dass $H^2(F;\R)$
     verschwindet (siehe zum Beispiel
     Löh\cite[Ch.\,1,\;1.3.4,\;Example~1.3.13]{lecnotes:loeh:bdcoho}).
     Dann folgt aus dem Korollar sofort
-    \[ \dim_{\R} \Quot{\QM(G)}{\QM_0(G)} = \infty  , \]
+    \[ \dim_{\R} \Quot{\QM(F)}{\QM_0(F)} = \infty  , \]
     d.\,h. es gibt unendlich viele (linear unabhängige) nicht-triviale
     Quasimorphismen auf~$F$.
 \end{thBeispiel}
