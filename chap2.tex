@@ -17,10 +17,16 @@
             \[ \forall\,g\in G,\;k\in\Z\colon\quad
                 f(g^k) = k \mkern2mu f(g)
             . \]
+            
+        \item
+            Den Untervektorraum von $\QM(G)$, der alle homogenen Quasimorphismen
+            umfasst, bezeichnen wir mit $\QM\homo(G)$.
     \end{itemize}
 \end{thDef}
 
 \begin{thProposition}[Homogenisierung]
+    \label{homo:homo}%
+    %
     Sei $f\in\QM(G)$. Dann ist die Abbildung
     \[ f\homo \colon G \to \R, \quad
         x\mapsto \lim_{n\to\infty} \frac{f(x^n)}{n}
@@ -30,23 +36,123 @@
     \[ \norm[\big]{f-f\homo}_\supr \leq D(f)  . \]
 \end{thProposition}
 
+\begin{thBemerkung} \label{homo:homoisproj}
+    Ist $f\in\QM(G)$ bereits homogen, so sehen wir sofort anhand der Definition
+    von $f\homo$ die Gleichheit $f\homo = f$ ein, das heißt Homogenisieren ist die
+    Identität auf $\QM\homo(G) \subset \QM(G)$. Außerdem folgt ebenfalls sofort
+    aus der Definition, dass Homogenisieren $\R$-linear ist, womit
+    \[ {\scdot}\homo\colon \QM(G) \to \QM(G) \]
+    eine lineare Projektion auf $\QM\homo(G) \subset \QM(G)$ ist.
+\end{thBemerkung}
+
 Zum Beweis verwenden wir das folgende Lemma:
 
-\begin{thLemma}
-    Sei $f\in\QM(G)$, sei $n\in\N$ und seien
+\begin{thLemma} \label{homo:qmprod}
+    Sei $f\in\QM(G)$, sei $n\in\N[\geq1]$ und seien
     $w_1,\dots,w_n\in G$. Dann gilt für $w\defeq w_1\cdots w_n\in G$:
-    \[ \abs[\Big]{ f(w) - \isum^n f(w_i) } \leq (n-1) D(f)  . \]
+    \[ \abs[\Big]{ f(w) - \isum^n f(w_i) } \leq (n-1)\cdot D(f)  . \]
 \end{thLemma}
 
-\begin{thKorollar}
+\begin{proof}
+   Wir führen Induktion über $n$. Der Fall $n=1$ ist klar. Sei also
+   $n\in\N[\geq2]$. Dann gilt:
+   \begin{align*}
+       \abs[\Big]{ f(w) - \isum^n f(w_i) }
+       &= \abs[\Big]{
+           f(w) - f(w_1\cdots w_{n-1}) + f(w_1\cdots w_{n-1})
+           - \isum^{n-1} f(w_i) - f(w_n)
+          }
+       \\
+       &\leq
+       \abs[\big]{f(w) - f(w_1\cdots w_{n-1}) - f(w_n)}
+       + \abs[\Big]{f(w_1\cdots w_{n-1}) - \isum^{n-1} f(w_i)}
+       \\
+       &\overset{\text{\clap{\tiny IV}}}\leq
+           D(f) + (n-1-1) \cdot D(f)
+        = (n-1) \cdot D(f)
+   \end{align*}
+\end{proof}
+
+\begin{proof}[Beweis von \cref{homo:homo}]
+    Wir zeigen zuerst, das der Grenzwert für alle $x\in G$ existiert. Sei also
+    $x\in G$ und seien $n,m\in\N[\geq1]$. Nach \cref{homo:qmprod} gilt
+    \[  \abs[\big]{f(x^{nm}) - n f(x^m)}
+         \leq (n-1) D(f)
+       \qtextq{sowie}
+       \abs[\big]{f(x^{nm}) - m f(x^n)}
+         \leq (m-1) D(f)
+    . \]
+    Mithilfe der Dreiecksungleichung erhalten wir daraus
+    \[ \abs[\big]{nf(x^m) - mf(x^n)}
+        \leq (n+m-2) D(f)
+    . \]
+    Daraus folgt
+    \[ \abs*{ \frac{f(x^m)}{m} - \frac{f(x^n)}{n} }
+        \leq \left( \frac{1}{m} + \frac{1}{n} - \frac{2}{mn} \right) D(f)
+        \;\xrightarrow[m,n\to\infty]{}\; 0
+    , \]
+    d.\,h. $\bigl( f(x^n)/n \bigr)_{n\in\N[\geq1]}$ ist eine Cauchyfolge in~$\R$
+    und damit auch konvergent. Aus der Definition von $f\homo$ folgt sofort
+    $f\homo(e) = 0$ für das neutrale Element $e\in G$. Also gilt
+    \begin{align*}
+        \abs[\big]{ f\homo(x^{-1}) + f\homo(x) }
+        &= \abs[\big]{ f\homo(x^{-1}) + f\homo(x) - f\homo(e) }
+        = \lim_{n\to\infty} \, \frac{1}{n} \,
+            \abs[\big]{ f(x^{-n}) - f(x^n) - f(x^{-n}x^n) }
+        \\
+        &\leq \lim_{n\to\infty} \, \frac{1}{n} \, D(f) = 0
+    , \end{align*}
+    d.\,h. $f\homo$ ist schon einmal ungerade. Für alle $x\in G$ und alle
+    $m\in\N[\geq1]$ gilt außerdem
+    \[ \abs[\big]{f\homo(x^m) - mf\homo(x)}
+        = \lim_{n\to\infty} \,
+        \frac{1}{n} \, \abs[\big]{ f(x^{mn}) - mf(x^n) }
+        \leq \lim_{n\to\infty} \frac{m-1}{n} \, D(f) = 0
+    , \]
+    d.\,h. zusammen mit dem vorherigen Argument folgt: 
+    $f\homo$ ist wirklich homogen. Für alle $x\in G$ gilt weiterhin
+    \[ \abs[\big]{f(x)-f\homo(x)}
+        = \lim_{n\to\infty} \,
+        \frac{1}{n} \, \abs[\big]{nf(x)-f(x^n)}
+        \leq \lim_{n\to\infty} \frac{n-1}{n} \, D(f) = D(f)
+    , \]
+    was die letzte Behauptung zeigt, und damit insbesondere, dass $f\homo$ ein
+    Quasimorphismus ist.
+    \\
+\end{proof}
+
+\begin{thKorollar} \label{homo:decomp}
     Es gilt
-    \[ \QM(G) = \QM\homo(G) \oplus \Cb^1(G)  , \]
-    wobei $\QM\homo(G) \subset \QM(G)$ den Untervekorraum aller homogenen
-    Quasimorphismen bezeichnet. Insbesondere gilt auch
+    \[ \QM(G) = \QM\homo(G) \oplus \Cb^1(G;\R)  . \]
+    Insbesondere gilt auch
     \[ \Quot{\QM\homo(G)}{\Hom_\Z(G,\R)} \;\cong\; \EHb^2(G;\R)  . \]
 \end{thKorollar}
 
+\begin{proof}
+    Sei $H\defeq {\cdot\,}\homo$. Aus \cref{homo:homoisproj} und einem einfachen
+    Resultat aus der linearen Algebra folgt:
+    \[ \QM(G) = \im(H) \oplus \im\bigl(\id_{\QM(G)}-H\bigr) . \]
+    Weil die Homogenisierung eines beschränkten Quasimorphismus offensichtlich
+    trivial ist, gilt $\im(\id_{\QM(G)}-H) = \Cb^1(G;\R)$ und es folgt die
+    Behauptung.
+    \\
+\end{proof}
+
 \begin{thKorollar}[Quasimorphismen auf abelschen Gruppen]
-    Sei $G$ abelsch. Dann gilt gibt es keine nicht-trivialen
+    Sei $G$ abelsch. Dann gibt es keine nicht-trivialen
     Quasimorphismen auf~$G$, d.\,h. es gilt $\QM(G) = \QM_0(G)$.
 \end{thKorollar}
+
+\begin{proof}
+    Sei $f\in\QM\homo(G)$ und seien $x,y\in G$. Dann gilt
+    $(xy)^n = x^ny^n$ für alle $n\in\N$, also:
+    \[  \abs[\big]{ f(x) + f(y) - f(xy) }
+        = \frac{1}{n} \, \abs[\big]{ f(x^n) + f(y^n) - f(x^ny^n) }
+        \leq \frac{1}{n} \, D(f)
+        \;\xrightarrow[n\to\infty]{}\; 0
+    . \]
+    Also ist $f$ schon ein Gruppenhomomorphismus und es gilt somit
+    $\QM\homo(G) = \Hom_\Z(G,\R)$. Mit \cref{homo:decomp} folgt
+    die Behauptung.
+    \\
+\end{proof}
