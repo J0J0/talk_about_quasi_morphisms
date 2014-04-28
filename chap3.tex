@@ -6,12 +6,14 @@
     nicht-trivialer Gruppen. Sei weiter
     \[ G \defeq \freeprod_{i\in I} G_i \]
     das freie Produkt der Gruppen. Wir behandeln jede der Gruppen~$G_i$
-    unter der üblichen Identifikation als Untergruppe von~$G$.
-    Ist nun $x\in G$, so gibt es ein $n\in\N$ und Indizes $i_1,\dots,i_n\in I$, so
-    dass $x$ eine eindeutige Darstellung
+    unter der üblichen Identifikation als Untergruppe von~$G$ und bezeichnen
+    mit $()\in G$ das leere Wort.
+    Ist nun $x\in G\setminus\{()\}$, so gibt es ein $n\in\N$ und Indizes
+    $i_1,\dots,i_n\in I$, so dass $x$ eine eindeutige Darstellung
     \[ x = x_1 \cdots x_n \]
-    besitzt, wobei $x_j \in G_{i_j}$ nicht-trivial für alle $j\in\setOneto n$
-    und $i_j\neq i_{j+1}$ für alle $j\in\setOneto{n-1}$.
+    besitzt, wobei folgende Bedingungen gelten: Für alle $j\in\setOneto n$ ist
+    $x_j \in G_{i_j}$ nicht-trivial und für alle $j\in\setOneto{n-1}$ gilt
+    $i_j\neq i_{j+1}$.
     
     Wir möchten nun Quasimorphismen auf~$G$ konstruieren. Für $i\in I$ sei dazu
     $\hatCb^1(G_i)$ derjenige Unterraum von $\Cb^1(G_i)$, der alle ungeraden
@@ -27,23 +29,114 @@
     \begin{align*}
         g_\sigma\colon G &\to \R
         \\
-        x &\mapsto \isum^n \sigma_{i_j}(x_j), \quad
-        \text{ falls $x = x_1\cdots x_n$ im obigen Sinne}
-    . \end{align*}
+        x &\mapsto 
+        \begin{cases}
+            0, \quad& \text{falls $x=()$},
+            \\
+            \isum^n \sigma_{i_j}(x_j), \quad&
+            \text{falls $x = x_1\cdots x_n$ im obigen Sinne} .
+        \end{cases}
+    \end{align*}
 \end{thKonstruktion}
 
 \begin{thProposition}[Quasimorphismen auf freien Produkten]
-    Die Abbildung $g_\sigma$ aus \cref{freep:construction} ist für alle
-    $\sigma\in V_0(G)$ ein Quasimorphismus.
+    \label{freep:qmonfreep}%
+    %
+    Die Abbildung $g_\sigma$ aus der obigen \cref{freep:construction} ist für
+    alle $\sigma\in V_0(G)$ ein Quasimorphismus.
 \end{thProposition}
 
+\begin{proof}
+    Seien $x,y\in G$ mit Darstellungen $x = x_1\cdots x_n$ bzw.
+    $y = y_1\cdots y_m$ und zugehörigen Indizes $i_1,\ldots,i_n$ bzw.
+    $j_1,\ldots,j_m$ wie in \cref{freep:construction}. Gilt nun $i_n \neq j_1$,
+    so hat $xy\in G$ einfach die Darstellung $x_1\cdots x_n y_1\cdots y_m$.
+    Gilt andererseits $i_n = j_1$, so ist $z \defeq x_ny_1$ entweder
+    nicht-trivial in $G_{i_n} = G_{j_1}$ und damit hat $xy$ die Darstellung
+    \[ x_1\cdots x_{n-1} \, z \, y_2\cdots y_m  , \]
+    oder aber $z$ ist das neutrale Element in $G_{i_n}$, womit $x_n$ gegen
+    $y_1$ wegfällt und wir $x_{n-1} y_2$ nach demselben Prinzip betrachten
+    müssen. Da beide Darstellungen endlich sind, muss dieser Prozess aber
+    irgendwann aufhören und wir erhalten für $xy$ eine Darstellung
+    \[ x_1\cdots x_{n-r} \, z \, y_{r+1}\cdots y_m  , \]
+    mit $r\in\N$ und $z\in G_{i_{n-r+1}} = G_{j_r}$ oder aber $z=()$.
+    In jedem Fall gilt aber $x_{n-k} = y_{k+1}^{-1}$ für alle
+    $k\in\setZeroto{r-2}$, und weil $\sigma$ nach Konstruktion aus ungeraden
+    Quasimorphismen besteht, gilt
+    \[ \sigma_{i_{n-k}}(x_{n-k}) + \sigma_{j_{k+1}}(y_{k+1}^{-1}) = 0 \]
+    für alle $k\in\setZeroto{r-2}$. Damit rechnen wir:
+    \begin{align*}
+        \abs[\big]{ g_\sigma(x) + g_\sigma(y) - g_\sigma(xy) }
+        &= \abs[\Big]{
+                \ksum^n \sigma_{i_k}(x_k) + \ksum^m \sigma_{j_k}(y_k)
+                - \ksum^{n-r} \sigma_{i_k}(x_k)
+                - \sigma_{j_r}(z)
+                - \ksum[r+1]^m \sigma_{j_k}(y_k)
+            }
+        \\[0.5ex]
+        &= \abs[\big]{
+            \sigma_{i_{n-r+1}}(x_{n-r+1})
+            + \sigma_{j_r}(y_r)
+            - \sigma_{j_r}(z)
+            }
+        \\[0.5ex]
+        &\leq \norm{\sigma_{i_{n-r+1}}}_\supr
+            + \norm{\sigma_{j_r}}_\supr
+            + \norm{\sigma_{j_r}}_\supr
+        \\[0.5ex]
+        &\leq 3\cdot\sup_{i\in I}\, \norm{\sigma_i}_\supr
+    \end{align*}
+    Es folgt
+    \[ D(g_\sigma) \leq 3\cdot\sup_{i\in I}\, \norm{\sigma_i}_\supr < \infty \]
+    und damit ist $g_\sigma$ wie behauptet ein Quasimorphismus auf~$G$.
+    \\
+\end{proof}
+
+Offenbar ist $V_0(G)$ ein Untervektorraum von $V(G)$, womit folgende Behauptung
+Sinn ergibt:
+
 \begin{thProposition}
+    \label{freep:qmtocoho}%
+    %
     Die Abbildung
     \[ V_0(G) \to \EHb^2(G;\R), \quad
-        \sigma \mapsto [\partial g_\sigma]_\bd
+        \sigma \mapsto \bigl[\delta^1(g_\sigma)\bigr]_\bd
     \]
-    ist linear und injektiv.
+    (mit $g_\sigma$ aus \cref{freep:construction})
+    ist wohldefiniert, linear und injektiv.
 \end{thProposition}
+
+\begin{proof}
+    Wie im Beweis von \cref{qmor:qmcoho} sieht man, dass die Abbildung
+    wohldefiniert ist und die Linearität ist klar nach Konstruktion.
+    Sei $\sigma\in V_0(G)$ mit
+    $[\delta^1(g_\sigma)]_\bd = 0 \in\Hb^2(G;\R)$. Daraus folgt aber
+    (wie im Beweis von \cref{qmor:qmcoho}), dass $g_\sigma - b = f$
+    für ein $b\in\Cb^1(G;\R)$ und ein $f\in\Hom_\Z(G,\R)$ gilt. Seien
+    $i\in I$, $x\in G_i$ und $k\in\N$. Dann gilt
+    \[ g_\sigma(x^k) - b(x^k) = \sigma_i(x^k) - b(x^k) 
+        \leq \norm{\sigma_i}_\supr + \norm{b}_\supr
+    , \]
+    womit
+    \[ f(x) \leq \frac{\norm{\sigma_i}_\supr + \norm{b}_\supr}{k}
+        \;\xrightarrow[k\to\infty]{}\; 0
+    , \]
+    also $f(x) = 0$ folgt. Weil $\bigcup_{i\in I} G_i \subset G$ ein
+    Erzeugendensystem von $G$ ist, gilt somit schon $f=0$, d.\,h.
+    $g_\sigma = b \in\Cb^1(G;\R)$. Seien nun $i,j\in I$ mit $i\neq j$ und
+    seien $x\in G_i,\; y\in G_j$. Für alle $k\in\Z$ gilt dann
+    \[ g_\sigma\bigl( (xy^{\pm1})^k \bigr)
+        = k\cdot \bigl( \sigma_i(x) \pm \sigma_j(y) \bigr)
+    . \]
+    Weil $g_\sigma = b$ beschränkt ist, folgt 
+    \[ \sigma_i(x) \pm \sigma_j(y) = 0
+        \qtextq{und daraus}
+        \sigma_i(x) = 0 = \sigma_j(y)
+    . \]
+    Da $i,j,x,y$ beliebig waren, folgt $\sigma = 0$. Damit ergibt sich
+    die Injektivität der Abbildung aus der Behauptung.
+    \\
+\end{proof}
 
 \begin{thKorollar}[Beschränkte Kohomologie freier Gruppen ist nicht trivial]
     \label{freep:cohofreegrp}%
@@ -52,7 +145,44 @@
     \[ \dim_{\R} \Hb^2(G;\R) = \infty  . \]
 \end{thKorollar}
 
-\begin{thKorollar}[Beschränkte Kohomologie von $\operatorname{PSL}_2(\Z)$]
-    Die beschränkte Kohomologie $\Hb^2( \operatorname{PSL}_2(\Z); \R )$ von
-    $\operatorname{PSL}_2(\Z)$ ist nicht trivial.
-\end{thKorollar}
+\begin{proof}
+    Sei $S\subset F$ ein freies Erzeugendensystem von~$F$. Dann gilt
+    $F \cong \freeprod_S \Z$, womit es nach \cref{freep:qmtocoho} genügt,
+    zu zeigen, dass der Raum $\hatCb^1(\Z;\R)$ unendlich-dimensional ist. Man
+    sieht aber leicht, dass
+    \begin{align*}
+        \ell^\infty(\R) &\to \hatCb^1(\Z;\R)
+        \\
+        (x_n)_{n\in\N} &\mapsto \left( 
+        \begin{aligned}
+            \Z &\to \R \\
+             k &\mapsto \sgn(k) \, x_{\abs{k}}
+        \end{aligned}
+        \,\right)
+    \end{align*}
+    ein Isomorphismus zwischen dem unendlich-dimensionalen $\R$-Vektorraum der
+    reellwertigen beschränkten Folgen und $\hatCb^1(\Z;\R)$ ist. (Dabei ist
+    $\sgn$ die Signumsfunktion.)
+    \\
+\end{proof}
+
+\begin{thBeispiel}%
+    [Beschränkte Kohomologie von $\operatorname{PSL}_2(\Z)$ im Grad~2]
+    %
+    Wir betrachten die Gruppe $\operatorname{PSL}_2(\Z) \cong \txtZQuot2 \ast
+    \txtZQuot3$. Um zu zeigen, dass $\Hb^2( \operatorname{PSL}_2(\Z); \R )$
+    nicht trivial ist, genügt es nach \cref{freep:qmtocoho} zu zeigen, dass 
+    \[ V_0\bigl(\operatorname{PSL}_2(\Z)\bigr)
+        \cong \hatCb^1(\txtZQuot2) \times \hatCb^1(\txtZQuot3)
+    \]
+    nicht trivial ist. Sei $n\in\N$. Ein ungerader (notwendigerweise
+    beschränkter) Quasimorphismus auf $\txtZQuot n$ ist offensichtlich
+    durch die Werte auf den Restklassen von $1$ bis $\lfloor (n-1)/2 \rfloor$
+    eindeutig bestimmt. Für $\txtZQuot2$ gilt also $\hatCb^1(\txtZQuot2) =
+    \{0\}$. Aber für $\txtZQuot3$ können wir den Wert auf der Restklasse von~$1$
+    frei vorgeben, so dass wir 
+    \[ \hatCb^1(\txtZQuot3) \cong \R \qtextq{und damit}
+        V_0\bigl(\operatorname{PSL}_2(\Z)\bigr) \cong \R
+    \]
+    erhalten.
+\end{thBeispiel}
