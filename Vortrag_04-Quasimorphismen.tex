@@ -22,7 +22,7 @@
 \usepackage{xstring}
 \usepackage{remreset}
 
-
+\usepackage[lowtilde]{url}
 \usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
             pdftitle={Seminar Beschränkte Kohomologie - %
                       Vortrag 4: Quasimorphismen},%
@@ -44,6 +44,9 @@
 \@removefromreset{footnote}{chapter}
 \makeatother
 
+
+% set the url style (especially for the bibliography)
+\urlstyle{sf}
 
 % make parenthesized versions of \ref and cleveref's \cref
 \newcommand*{\pref}[1]{(\ref{#1})}
