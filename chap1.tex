@@ -3,7 +3,7 @@
     Sei $G$ in diesem Kapitel stets eine Gruppe.
 \end{thSetup}
 
-\begin{thDef}[Defekt, Quasimorphismus] \hfill
+\begin{thDef}[Defekt, Quasimorphismus] \label{qmor:def} \hfill
     \begin{itemize}
         \item
             Der \emph{Defekt~$D(f)$} einer Abbildung $f\colon G\to\R$
@@ -53,11 +53,11 @@ Quasimorphismen) einen $\R$-Vektorraum.
     \label{qmor:decompQM0}%
     %
     Es gilt:
-    \[ \QM_0(G) = \Hom_\Z(G,\R) \oplus \Cb^1(G)  . \]
+    \[ \QM_0(G) = \Hom_\Z(G,\R) \oplus \Cb^1(G;\R)  . \]
 \end{thProposition}
 
 \begin{proofsketch}
-    Die Gleichheit $\QM_0(G) = \Hom_\Z(G,\R) + \Cb^1(G)$ liest man direkt an den
+    Die Gleichheit $\QM_0(G) = \Hom_\Z(G,\R) + \Cb^1(G;\R)$ liest man direkt an den
     Definitionen ab und weiter überlegt man sich leicht, dass es keine beschränkten
     Gruppenhomomorphismen $G\to\R$ gibt.
     \\
@@ -92,6 +92,7 @@ Quasimorphismen) einen $\R$-Vektorraum.
             Es ist
             \[ \EHb^\ast(G;\R)
                 \defeq \ker\bigl( \Hb^\ast(G;\R) \to H^\ast(G;\R) \bigr)
+                \;\in\, \lGrad{\R}
             \]
             der (gradweise) Kern der Vergleichsabbildung.
     \end{itemize}

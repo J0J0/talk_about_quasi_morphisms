@@ -1,10 +1,10 @@
-\chapter{Quasimorphismen auf freien Produkten}
+\chapter{Quasimorphismen auf freien Produkten} \label{freep}
 In diesem Kapitel wollen wir eine Konstruktion angeben, die (eine potentiell
 große Anzahl, vgl. \cref{freep:cohofreegrp}) von Quasimorphismen auf freien
 Produkten und insbesondere freien Gruppen liefert. Der Großteil dieses Kapitels
 basiert auf Rolli\cite{arxiv:rolli09}.
 
-\begin{thKonstruktion}
+\begin{thKonstruktionSetup}
     \label{freep:construction}
     %
     Sei $I$ eine Menge mit $\abs{I}\geq 2$ und $(G_i)_{i\in I}$ eine Familie
@@ -21,9 +21,9 @@ basiert auf Rolli\cite{arxiv:rolli09}.
     $i_k\neq i_{k+1}$.
     
     Wir möchten nun Quasimorphismen auf~$G$ konstruieren. Für $i\in I$ sei dazu
-    $\hatCb^1(G_i)$ derjenige Unterraum von $\Cb^1(G_i)$, der alle ungeraden
+    $\hatCb^1(G_i;\R)$ derjenige Unterraum von $\Cb^1(G_i;\R)$, der alle ungeraden
     beschränkten Quasimorphismen enthält. Weiter sei
-    \[ V(G) \defeq \prod_{i\in I} \hatCb^1(G_i) \]
+    \[ V(G) \defeq \prod_{i\in I} \hatCb^1(G_i;\R) \]
     und
     \[ V_0(G) \defeq \bigl\{ (\sigma_i)_{i\in I} \in V(G) \Mid
         \sup\nolimits_{i\in I}\, \norm{\sigma_i}_\supr < \infty \bigr\}
@@ -42,12 +42,12 @@ basiert auf Rolli\cite{arxiv:rolli09}.
             \text{falls $x = x_1\cdots x_n$ im obigen Sinne} .
         \end{cases}
     \end{align*}
-\end{thKonstruktion}
+\end{thKonstruktionSetup}
 
 \begin{thProposition}[Quasimorphismen auf freien Produkten]
     \label{freep:qmonfreep}%
     %
-    Die Abbildung $g_\sigma$ aus der obigen \cref{freep:construction} ist für
+    Die Abbildung $g_\sigma$ aus \cref{freep:construction} ist für
     alle $\sigma\in V_0(G)$ ein Quasimorphismus.
 \end{thProposition}
 
@@ -167,7 +167,7 @@ Sinn ergibt:
     \end{align*}
     ein Isomorphismus zwischen dem unendlich-dimensionalen $\R$-Vektorraum der
     reellwertigen beschränkten Folgen und $\hatCb^1(\Z;\R)$ ist. (Dabei ist
-    $\sgn$ die Signumsfunktion.)
+    \enquote{$\sgn$} die Signumsfunktion.)
     \\
 \end{proof}
 
@@ -178,15 +178,15 @@ Sinn ergibt:
     \txtZQuot3$. Um zu zeigen, dass $\Hb^2( \operatorname{PSL}_2(\Z); \R )$
     nicht trivial ist, genügt es nach \cref{freep:qmtocoho} zu zeigen, dass 
     \[ V_0\bigl(\operatorname{PSL}_2(\Z)\bigr)
-        \cong \hatCb^1(\txtZQuot2) \times \hatCb^1(\txtZQuot3)
+        \cong \hatCb^1(\txtZQuot2;\R) \times \hatCb^1(\txtZQuot3;\R)
     \]
     nicht trivial ist. Sei $n\in\N$. Ein ungerader (notwendigerweise
     beschränkter) Quasimorphismus auf $\txtZQuot n$ ist offensichtlich
     durch die Werte auf den Restklassen von $1$ bis $\lfloor (n-1)/2 \rfloor$
-    eindeutig bestimmt. Für $\txtZQuot2$ gilt also $\hatCb^1(\txtZQuot2) =
+    eindeutig bestimmt. Für $\txtZQuot2$ gilt also $\hatCb^1(\txtZQuot2;\R) =
     \{0\}$. Aber für $\txtZQuot3$ können wir den Wert auf der Restklasse von~$1$
     frei vorgeben, so dass wir 
-    \[ \hatCb^1(\txtZQuot3) \cong \R \qtextq{und damit}
+    \[ \hatCb^1(\txtZQuot3;\R) \cong \R \qtextq{und damit}
         V_0\bigl(\operatorname{PSL}_2(\Z)\bigr) \cong \R
     \]
     erhalten.

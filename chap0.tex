@@ -1,7 +1,20 @@
 
 \chapter{Vorwort, Notation und Vorbereitungen}
 \section{Einleitung}
-\[ \dots \] % TODO
+In den letzten Vorträgen haben wir \emph{beschränkte Kohomologie von Gruppen}
+betrachtet und erste Eigenschaften selbiger gesehen. In diesem Skript werden
+wir nun sogenannte \emph{Quasimorphismen} einführen und einen Zusammenhang zu
+beschränkter Kohomologie beweisen \pcref{qmor:qmcoho}. Dabei verstehen wir unter
+einem Quasimorphismus eine Abbildung, die \enquote{bis auf einen beschränkten
+Fehler ein Gruppenhomomorphismus ist} \pcref{qmor:def}. Anschließend betrachten wir
+gewisse \enquote{Gutartigkeitsbedingungen} von Quasimorphismen \pcref{homo}
+und zeigen, wie man Quasimorphismen auf freien Produkten konstruieren kann
+\pcref{freep}.
+
+Im Folgenden betrachten wir die rellen Zahlen~$\R$ stets als Gruppe bezüglich
+der üblichen Addition auf~$\R$ und sofern nicht anders beschrieben (oder
+offensichtlich) schreiben wir die Verknüpfung auf einer Gruppe~$G$ immer
+multiplikativ (wobei wir meist keine expliziten Verknüpfungszeichen setzen).
 
 \section{Notation}
 In diesem Skript wird folgende Notation verwendet:
@@ -37,8 +50,7 @@ In diesem Skript wird folgende Notation verwendet:
 Sei $G$ eine Gruppe. Wir bezeichnen den \emph{Bar-Kettenkomplex} von~$G$
 mit $C_\ast(G) = (C_\ast,\partial_\ast)$, wobei
 \[ C_k(G) = \bigoplus_{g\in G^k} [g_1|\ldots|g_k]\,\Z \]
-für alle $k\in\N$ (und -- falls wir den Komplex $\Z$-indiziert betrachten wollen
--- $C_k(G) = 0$ für $k\in\Z_{<0}$) sowie
+für alle $k\in\N$ und $C_k(G) = 0$ für $k\in\Z_{<0}$ sowie
 \begin{align*}
     \partial_k\colon C_k(G) &\to C_{k-1}(G)
     \\
@@ -59,7 +71,8 @@ wird zusammen mit der $\ell^1$-Norm bezüglich der Basis zu einem
 normierten Kettenkomplex. Der topologisch dualisierte Kokettenkomplex
 \[ \Cb^\ast(G;\R) \defeq B\bigl( C_\ast^{\R}(G), \R \bigr) \]
 ist der \emph{Banach-Bar-Kokettenkomplex} zu~$G$ und
-besteht aus Banachräumen bezüglich der Operatornorm.
+besteht aus Banachräumen bezüglich der Operatornorm und der Folge der
+induzierten Korandoperatoren~$\delta_\bd$.
 
 Die \emph{(gewöhnliche) (Gruppen-)Kohomologie} von $G$ (mit reellen
 Koeffizienten) ist

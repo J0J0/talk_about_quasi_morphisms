@@ -1,4 +1,4 @@
-\chapter{Ungerade und homogene Quasimorphismen}
+\chapter{Ungerade und homogene Quasimorphismen} \label{homo}
 \begin{thSetup}
     Sei $G$ auch in diesem Kapitel eine Gruppe.
 \end{thSetup}
@@ -45,7 +45,7 @@
     eine lineare Projektion auf $\QM\homo(G) \subset \QM(G)$ ist.
 \end{thBemerkung}
 
-Zum Beweis verwenden wir das folgende Lemma:
+Zum Beweis von \cref{homo:homo} verwenden wir das folgende Lemma:
 
 \begin{thLemma} \label{homo:qmprod}
     Sei $f\in\QM(G)$, sei $n\in\N[\geq1]$ und seien
@@ -100,7 +100,7 @@ Zum Beweis verwenden wir das folgende Lemma:
         \abs[\big]{ f\homo(x^{-1}) + f\homo(x) }
         &= \abs[\big]{ f\homo(x^{-1}) + f\homo(x) - f\homo(e) }
         = \lim_{n\to\infty} \, \frac{1}{n} \,
-            \abs[\big]{ f(x^{-n}) - f(x^n) - f(x^{-n}x^n) }
+            \abs[\big]{ f(x^{-n}) + f(x^n) - f(x^{-n}x^n) }
         \\
         &\leq \lim_{n\to\infty} \, \frac{1}{n} \, D(f) = 0
     , \end{align*}
