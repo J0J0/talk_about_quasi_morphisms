@@ -65,16 +65,16 @@
         \newcommand{\gray}[1]{{\color{black!50}#1}}
         \newcommand{\graylap}[1]{\mathrlap{\gray{#1}}}
         \xymatrix@C=1cm@R=0.4cm{
-            C^1(G;\R) \ar[r]^{\delta^1}
-            & C^2(G;\R) \ar[r]^{\pi}
+            C^1(G;\R) \ar[r]^(.55){\delta^1}
+            & \ker(\delta^2) \ar[r]^{\pi}
             & H^2(G;\R) \ar@{}[r]|-{\gray=}
-                & \graylap{\ker\bigl(\delta^2\bigr)/\im\bigl(\delta^1\bigr)}
+            & \graylap{\ker\bigl(\delta^2\bigr)/\im\bigl(\delta^1\bigr)}
             \\
-            \QM(G;\R) \ar@{-->}[r]^{\delta} \ar@{ `->}[u]
+            \QM(G) \ar@{-->}[r]^(.55){\delta^{\phantom{1}}} \ar@{ `->}[u]
                 \ar@{-->}[rrd]^(.68)\phi
-                & \Cb^2(G;\R) \ar[r]^{\pi_\bd} \ar@{ `->}[u]
+            & \ker(\delta_\bd^2) \ar[r]^{\pi_\bd} \ar@{ `->}[u]
             & \Hb^2(G;\R) \ar@{}[r]|-{\gray=} \ar[u]_c
-                & \graylap{\ker\bigl(\delta^2_\bd\bigr)/\im\bigl(\delta^1_\bd\bigr)}
+            & \graylap{\ker\bigl(\delta^2_\bd\bigr)/\im\bigl(\delta^1_\bd\bigr)}
             \\
             & & \EHb^2(G;\R) \ar@{}[r]|-{\gray=} \ar@{ `->}[u]
                 & \graylap{\ker(c)}
