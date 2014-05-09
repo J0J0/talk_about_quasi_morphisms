@@ -76,7 +76,7 @@ Zum Beweis von \cref{homo:homo} verwenden wir das folgende Lemma:
 \end{proof}
 
 \begin{proof}[Beweis von \cref{homo:homo}]
-    Wir zeigen zuerst, das der Grenzwert für alle $x\in G$ existiert. Sei also
+    Wir zeigen zuerst, dass der Grenzwert für alle $x\in G$ existiert. Sei also
     $x\in G$ und seien $n,m\in\N[\geq1]$. Nach \cref{homo:qmprod} gilt
     \[  \abs[\big]{f(x^{nm}) - n f(x^m)}
          \leq (n-1) D(f)
@@ -123,7 +123,9 @@ Zum Beweis von \cref{homo:homo} verwenden wir das folgende Lemma:
     \\
 \end{proof}
 
-\begin{thKorollar} \label{homo:decomp}
+\begin{thKorollar}[Zerlegung von \texorpdfstring{$\QM(G)$}{QM(G)}]
+    \label{homo:decomp}%
+    %
     Es gilt
     \[ \QM(G) = \QM\homo(G) \oplus \Cb^1(G;\R)  . \]
     Insbesondere gilt auch
@@ -144,7 +146,8 @@ Zum Beweis von \cref{homo:homo} verwenden wir das folgende Lemma:
 
 \begin{thKorollar}[Quasimorphismen auf abelschen Gruppen]
     Sei $G$ abelsch. Dann gibt es keine nicht-trivialen
-    Quasimorphismen auf~$G$, d.\,h. es gilt $\QM(G) = \QM_0(G)$.
+    Quasimorphismen auf~$G$, d.\,h. es gilt $\QM(G) = \QM_0(G)$,
+    und somit ist insbesondere $\EHb^2(G;\R)$ trivial.
 \end{thKorollar}
 
 \begin{proof}
@@ -156,7 +159,7 @@ Zum Beweis von \cref{homo:homo} verwenden wir das folgende Lemma:
         \;\xrightarrow[n\to\infty]{}\; 0
     . \]
     Also ist $f$ schon ein Gruppenhomomorphismus und es gilt somit
-    $\QM\homo(G) = \Hom(G,\R)$. Mit \cref{homo:decomp} folgt
-    die Behauptung.
+    $\QM\homo(G) = \Hom(G,\R)$. Mit \cref{homo:decomp} folgen
+    die Behauptungen.
     \\
 \end{proof}
